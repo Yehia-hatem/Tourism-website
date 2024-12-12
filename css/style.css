@@ -127,3 +127,40 @@ nav ul li a {
         grid-template-columns: 1fr; /* Stack columns on smaller screens */
     }
 }
+
+#property-types, #trending-destinations {
+    padding: 2rem;
+    text-align: center;
+}
+
+.property-grid, .destination-grid {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.property-item, .destination-item {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.property-item img, .destination-item img {
+    width: 100%;
+    height: auto;
+}
+
+.property-item h3, .destination-item h3 {
+    margin: 0.5rem 0;
+    font-size: 1.2rem;
+}
+
+.destination-item p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #555;
+}
