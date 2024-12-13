@@ -1,12 +1,16 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-   
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Travel Egypt - Your Gateway to Amazing Destinations</title>
+    <title>Tourism Reviews</title>
+    <link rel="stylesheet" href="../css/review-style.css">
     <link rel="stylesheet" href="../css/style.css">
+    
+
 </head>
 <body>
-    
+
     <!-- Navigation -->
     <nav>
         <div class="logo">Student Travel Egypt</div>
@@ -21,81 +25,41 @@
         </ul>
     </nav>
 
-    <!-- banner Section -->
-    <header class="banner">
-        <h1>Discover Amazing Destinations</h1>
-        <p>Experience the world with our expert guides</p>
-        <a href="../pages/booking.html" class="cta-button">Start Your Journey</a>
+    <header>
+        <h1>Share Your Trip Experience</h1>
     </header>
 
-    <!-- Featured Destinations -->
-    <section id="destinations">
-        <h2>Popular Destinations</h2>
-        <div class="destination-grid">
-            <!-- Add destination cards here -->
-        </div>
-    </section>
+    <div class="container1">
+        <section id="reviews">
+            <h2>What People Are Saying</h2>
 
-    <!--browse by category-->
+            <div class="review">
+                <div class="review-header">
+                    <img src="../images/user/user-ali.jpeg" alt="User Avatar" class="review-avatar">
+                    <div class="review-meta">
+                        <h3>Ali</h3>
+                        <span class="review-date">December 10, 2024</span>
+                    </div>
+                </div>
+                <p class="review-content">Amazing trip! Everything was perfectly organized and I had a great time.</p>
+            </div>
 
-    <section id="property-types">
-        <h2>Browse by Property Type</h2>
-        <div class="property-grid">
-            <div class="property-item">
-                <img src="../images/hotel.png" alt="Hotels">
-                <h3>Hotels</h3>
-            </div>
-            <div class="property-item">
-                <img src="../images/resort.jpg" alt="Resorts">
-                <h3>Resorts</h3>
-            </div>
-            <div class="property-item">
-                <img src="../images/packages.png" alt="Villas">
-                <h3>Packages</h3>
-            </div>
-        
-        </div>
-    </section>
+           
+        </section>
 
-
-    <!-- Trending-->
-
-    <section id="trending-destinations">
-        <h2>Trending Destinations</h2>
-        <p>Most popular choices for travelers from Egypt</p>
-        <div class="destination-grid">
-            <div class="destination-item">
-                <img src="../images/hurghada.jpg" alt="Hurghada">
-                <h3>Hurghada <span>🇪🇬</span></h3>
-                <p>Average price EGP 5,693.46</p>
-            </div>
-            <div class="destination-item">
-                <img src="../images/cairo.jpg" alt="Cairo">
-                <h3>Cairo <span>🇪🇬</span></h3>
-                <p>Average price EGP 6,703.78</p>
-            </div>
-            <div class="destination-item">
-                <img src="../images/meca.webp" alt="Mecca">
-                <h3>Mecca <span>🇸🇦</span></h3>
-                <p>Average price EGP 4,058.37</p>
-            </div>
-            <div class="destination-item">
-                <img src="../images/alexandria.avif" alt="Alexandria">
-                <h3>Alexandria <span>🇪🇬</span></h3>
-                <p>Average price EGP 8,042.41</p>
-            </div>
-            <div class="destination-item">
-                <img src="../images/dubai.webp" alt="Dubai">
-                <h3>Dubai <span>🇦🇪</span></h3>
-                <p>Average price EGP 14,712.07</p>
-            </div>
-        </div>
-    </section>
+        <section class="review-form">
+            <h2>Leave a Review</h2>
+            <form action="#" method="post">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <textarea name="review" rows="5" placeholder="Share your experience..." required></textarea>
+                <button type="submit">Submit Review</button>
+            </form>
+        </section>
+    </div>
 
     <!-- Footer Section -->
     <footer class="footer">
         <div class="container">
-
             <div class="footer-column">
                 <h3>Quick Links</h3>
                 <ul>
@@ -138,7 +102,6 @@
                 </ul>
             </div>
         </div>
-      </footer>
-      
+    </footer>
 </body>
 </html>
