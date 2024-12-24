@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Tour - Student Travel Egypt</title>
+    <link rel="stylesheet" type="text/css" href="../css/booking-styles.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Student Travel Egypt</div>
+        <ul>
+            <li><a href="../pages/home.html">Home</a></li>
+            <li><a href="../pages/destinations.html">Destinations</a></li>
+            <li><a href="../pages/about.html">About</a></li>
+            <li><a href="../pages/reviews.html">Reviews</a></li>
+            <li><a href="../pages/services.html">Services</a></li>
+            <li><a href="../pages/contact.html">Contact</a></li>
+            <li><a href="../pages/booking.html" class="booking-btn">Book Now</a></li>
+        </ul>
+    </nav>
+
+    <div class="booking-container">
+        <h1>Book Your Adventure</h1>
+        
+        <form class="booking-form" enctype="multipart/form-data">
+            <!-- Personal Information -->
+            <div class="form-section">
+                <h2>Personal Details</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Documents Section -->
+            <div class="form-section">
+                <h2>Required Documents</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="passport">Passport Copy</label>
+                        <input type="file" id="passport" name="passport" 
+                            accept=".pdf,.jpg,.jpeg,.png" required>
+                        <small>Upload a clear copy of your passport (PDF, JPG, PNG)</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="personalId">Personal ID</label>
+                        <input type="file" id="personalId" name="personalId" 
+                            accept=".pdf,.jpg,.jpeg,.png" required>
+                        <small>Upload a valid government ID (PDF, JPG, PNG)</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="photo">Recent Photo</label>
+                        <input type="file" id="photo" name="photo" 
+                            accept=".jpg,.jpeg,.png">
+                        <small>Upload a recent passport-size photo (JPG, PNG)</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Student Section -->
+            <div class="form-section">
+                <h2>Student Information</h2>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="isStudent" name="isStudent">
+                    <label for="isStudent">I am a student</label>
+                </div>
+            
+                <!-- Student Details Section -->
+                <div id="studentDetails" class="student-fields">
+                    <div class="form-grid">
+                        <!-- College Email Field -->
+                        <div class="form-group">
+                            <label for="collegeEmail">College Email</label>
+                            <input type="email" 
+                                   id="collegeEmail" 
+                                   name="collegeEmail" 
+                                   placeholder="your.email@college.edu"
+                                   pattern=".*\.edu$"
+                                   title="Please use your .edu email address"
+                                   required>
+                            <small>Must be a valid college/university email ending in .edu</small>
+                        </div>
+            
+                        <!-- College ID Photo Upload -->
+                        <div class="form-group">
+                            <label for="collegeIdPhoto">Upload College ID Photo</label>
+                            <input type="file" 
+                                   id="collegeIdPhoto" 
+                                   name="collegeIdPhoto" 
+                                   accept=".jpg,.jpeg,.png" 
+                                   required>
+                            <small>Upload a clear photo of your valid college ID (JPG, PNG)</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const isStudentCheckbox = document.getElementById('isStudent');
+                    const studentDetails = document.getElementById('studentDetails');
+            
+                    // Initially hide the student details
+                    studentDetails.style.display = 'none';
+            
+                    // Toggle visibility based on checkbox
+                    isStudentCheckbox.addEventListener('change', () => {
+                        studentDetails.style.display = isStudentCheckbox.checked ? 'block' : 'none';
+                    });
+                });
+            </script>
+
+            <!-- Trip Details -->
+            <div class="form-section">
+                <h2>Trip Details</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="destination">Destination</label>
+                        <select id="destination" name="destination" required>
+                            <option value="">Select Destination</option>
+                            <option value="paris">Paris, France</option>
+                            <option value="tokyo">Tokyo, Japan</option>
+                            <option value="bali">Bali, Indonesia</option>
+                            <option value="rome">Rome, Italy</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="package">Tour Package</label>
+                        <select id="package" name="package" required>
+                            <option value="">Select Package</option>
+                            <option value="basic">Basic Tour</option>
+                            <option value="standard">Standard Tour</option>
+                            <option value="premium">Premium Tour</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="startDate">Start Date</label>
+                        <input type="date" id="startDate" name="startDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="duration">Duration (Days)</label>
+                        <input type="number" id="duration" name="duration" min="1" max="30" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="guests">Number of Guests</label>
+                        <input type="number" id="guests" name="guests" min="1" max="10" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Special Requirements -->
+            <div class="form-section">
+                <h2>Additional Information</h2>
+                <div class="form-group">
+                    <label for="requirements">Special Requirements</label>
+                    <textarea id="requirements" name="requirements" rows="4" 
+                        placeholder="Please mention any dietary restrictions, accessibility needs, or special requests"></textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Proceed to Payment</button>
+        </form>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../pages/home.html">Home</a></li>
+                    <li><a href="../pages/destinations.html">Destinations</a></li>
+                    <li><a href="../pages/about.html">About</a></li>
+                    <li><a href="../pages/reviews.html">Reviews</a></li>
+                    <li><a href="../pages/services.html">Services</a></li>
+                    <li><a href="../pages/contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Extra Links</h3>
+                <ul>
+                    <li><a href="#">Ask Questions</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms Of Use</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Contact Info</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i>010 02449889</li>
+                    <li><i class="fas fa-envelope"></i> Shaikhanas@gmail.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> 24 Al Bustan St, Bab Al Louq, Abdeen</li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com/Student.travel.egypt"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+      </footer>
+
+</body>
+</html>
