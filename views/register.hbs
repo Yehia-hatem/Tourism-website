@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Student Travel Egypt</div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/destinations">Destinations</a></li>
+            <li><a href="/flights">Flights</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/auth/register" class="register-btn">Register</a></li>
+            <li><a href="/auth/signin" class="signin-btn">Sign In</a></li>
+            <li><a href="/booking" class="booking-btn">Book Now</a></li>
+        </ul>
+
+    </nav>
+
+    <div class="form-container">
+        <h1>Register</h1>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="login.html">Sign In</a></p>
+    </div>
+
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flights - Student Travel Egypt</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+</head>
+<body>
+   <!-- Navigation -->
+   <nav>
+    <div class="logo">Student Travel Egypt</div>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/destinations">Destinations</a></li>
+        <li><a href="/flights">Flights</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/auth/register" class="register-btn">Register</a></li>
+        <li><a href="/auth/signin" class="signin-btn">Sign In</a></li>
+        <li><a href="/booking" class="booking-btn">Book Now</a></li>
+    </ul>
+
+</nav>
+
+    <!-- Flight Search Section -->
+    <section id="flight-search">
+        <h1>Find Your Perfect Flight</h1>
+        <form id="flight-search-form">
+            <input type="text" id="origin" placeholder="Enter Origin (e.g., CAI)" required>
+            <input type="text" id="destination" placeholder="Enter Destination (e.g., PAR)" required>
+            <input type="date" id="departure-date" placeholder="Departure Date" required>
+            <input type="date" id="return-date" placeholder="Return Date" optional>
+            <input type="number" id="adults" placeholder="Number of Adults" min="1" required>
+            <button type="submit">Search Flights</button>
+        </form>
+    </section>
+
+    <!-- Flight Results Section -->
+    <section id="flight-results">
+        <h2>Available Flights</h2>
+        <div id="flights-container">
+            <!-- Flight results will appear here -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Student Travel Egypt. All Rights Reserved.</p>
+    </footer>
+
+    <script src="../js/flights.js"></script>
+</body>
+</html>
