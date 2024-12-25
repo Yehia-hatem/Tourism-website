@@ -12,8 +12,8 @@ router.get('/about', (req, res) => {
 });
 
 // Destinations Page
-router.get('/destinations', (req, res) => {
-    res.render('destinations', { title: 'Destination' });
+router.get('/hotels', (req, res) => {
+    res.render('hotels', { title: 'Hotels' });
 });
 
 // Flights Page

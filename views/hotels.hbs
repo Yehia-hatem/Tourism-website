@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotels - Student Travel Egypt</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+</head>
+<body>
+       <!-- Navigation -->
+    <nav>
+        <div class="logo">Student Travel Egypt</div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/destinations">Destinations</a></li>
+            <li><a href="/flights">Flights</a></li>
+            <li><a href="/hotels">Hotels</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/auth/register" class="register-btn">Register</a></li>
+            <li><a href="/auth/signin" class="signin-btn">Sign In</a></li>
+            <li><a href="/booking" class="booking-btn">Book Now</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hotel Search Section -->
+    <div id="hotel-search-bar">
+        <form id="hotel-search-form" class="search-bar">
+            <!-- Destination Input -->
+            <div class="search-field">
+                <label for="city"><i class="fa fa-bed"></i></label>
+                <input type="text" id="city" placeholder="Enter Destination (e.g., Hurghada)" required>
+            </div>
+
+            <!-- Check-in and Check-out Dates -->
+            <div class="search-field">
+                <label for="checkIn"><i class="fa fa-calendar"></i></label>
+                <input type="date" id="checkIn" placeholder="Check-in Date" required>
+                <span>—</span>
+                <input type="date" id="checkOut" placeholder="Check-out Date" required>
+            </div>
+
+            <!-- Guests -->
+            <div class="search-field">
+                <label for="guests"><i class="fa fa-user"></i></label>
+                <select id="guests" required>
+                    <option value="1">1 adult</option>
+                    <option value="2">2 adults</option>
+                    <option value="3">3 adults</option>
+                    <option value="4">4 adults</option>
+                    <option value="5">5 adults</option>
+                </select>
+                <span>·</span>
+                <select id="children" required>
+                    <option value="0">0 children</option>
+                    <option value="1">1 child</option>
+                    <option value="2">2 children</option>
+                    <option value="3">3 children</option>
+                </select>
+                <span>·</span>
+                <select id="rooms" required>
+                    <option value="1">1 room</option>
+                    <option value="2">2 rooms</option>
+                    <option value="3">3 rooms</option>
+                </select>
+            </div>
+
+            <!-- Search Button -->
+            <button type="submit" class="search-btn">Search</button>
+        </form>
+    </div>
+
+    <!-- Hotel Results Section -->
+    <section id="hotel-results">
+        <h2>Available Hotels</h2>
+        <div id="hotels-container">
+            <!-- Results will appear here -->
+        </div>
+    </section>
+
+    <!-- Inline JavaScript -->
+    <script>
+        document.getElementById('hotel-search-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const city = document.getElementById('city').value;
+            const checkIn = document.getElementById('checkIn').value;
+            const checkOut = document.getElementById('checkOut').value;
+            const guests = document.getElementById('guests').value;
+            const children = document.getElementById('children').value;
+            const rooms = document.getElementById('rooms').value;
+
+            try {
+                const response = await axios.get('/api/hotels/search', {
+                    params: { city, checkIn, checkOut, guests, children, rooms },
+                });
+
+                const hotels = response.data.hotels || [];
+                const hotelsContainer = document.getElementById('hotels-container');
+                hotelsContainer.innerHTML = '';
+
+                if (hotels.length > 0) {
+                    hotels.forEach((hotel) => {
+                        const hotelCard = `
+                            <div class="hotel-card">
+                                <h3>${hotel.name}</h3>
+                                <p><strong>Location:</strong> ${hotel.location}</p>
+                                <p><strong>Stars:</strong> ${hotel.stars}</p>
+                                <p><strong>Price:</strong> $${hotel.price}</p>
+                                <p><strong>Available Rooms:</strong> ${hotel.availableRooms}</p>
+                            </div>
+                        `;
+                        hotelsContainer.innerHTML += hotelCard;
+                    });
+                } else {
+                    hotelsContainer.innerHTML = '<p>No hotels found for the specified criteria.</p>';
+                }
+            } catch (error) {
+                console.error('Error fetching hotels:', error);
+                document.getElementById('hotels-container').innerHTML =
+                    '<p>Failed to fetch hotel data. Please try again later.</p>';
+            }
+        });
+    </script>
+</body>
+</html>
