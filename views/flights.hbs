@@ -4,51 +4,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flights - Student Travel Egypt</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
 </head>
 <body>
-   <!-- Navigation -->
-   <nav>
-    <div class="logo">Student Travel Egypt</div>
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/destinations">Destinations</a></li>
-        <li><a href="/flights">Flights</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/auth/register" class="register-btn">Register</a></li>
-        <li><a href="/auth/signin" class="signin-btn">Sign In</a></li>
-        <li><a href="/booking" class="booking-btn">Book Now</a></li>
-    </ul>
-
-</nav>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Student Travel Egypt</div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/destinations">Destinations</a></li>
+            <li><a href="/flights">Flights</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/auth/register" class="register-btn">Register</a></li>
+            <li><a href="/auth/signin" class="signin-btn">Sign In</a></li>
+            <li><a href="/booking" class="booking-btn">Book Now</a></li>
+        </ul>
+    </nav>
 
     <!-- Flight Search Section -->
     <section id="flight-search">
         <h1>Find Your Perfect Flight</h1>
         <form id="flight-search-form">
-            <input type="text" id="origin" placeholder="Enter Origin (e.g., CAI)" required>
-            <input type="text" id="destination" placeholder="Enter Destination (e.g., PAR)" required>
-            <input type="date" id="departure-date" placeholder="Departure Date" required>
-            <input type="date" id="return-date" placeholder="Return Date" optional>
-            <input type="number" id="adults" placeholder="Number of Adults" min="1" required>
+            <div>
+                <label for="origin">Origin:</label>
+                <input type="text" id="origin" name="origin" placeholder="Enter Origin (e.g., CAI)" required>
+            </div>
+            <div>
+                <label for="destination">Destination:</label>
+                <input type="text" id="destination" name="destination" placeholder="Enter Destination (e.g., PAR)" required>
+            </div>
+            <div>
+                <label for="departure-date">Departure Date:</label>
+                <input type="date" id="departure-date" name="departure-date" required>
+            </div>
+            <div>
+                <label for="return-date">Return Date:</label>
+                <input type="date" id="return-date" name="return-date">
+            </div>
+            <div>
+                <label for="adults">Number of Adults:</label>
+                <input type="number" id="adults" name="adults" min="1" value="1" required>
+            </div>
             <button type="submit">Search Flights</button>
         </form>
     </section>
 
     <!-- Flight Results Section -->
-    <section id="flight-results">
-        <h2>Available Flights</h2>
-        <div id="flights-container">
-            <!-- Flight results will appear here -->
-        </div>
-    </section>
+<section id="flight-results">
+    <h2>Available Flights</h2>
+    <div id="flights-container" class="flight-cards-container">
+        <!-- Flight cards will appear here -->
+    </div>
+</section>
 
     <!-- Footer -->
     <footer class="footer">
         <p>&copy; 2024 Student Travel Egypt. All Rights Reserved.</p>
     </footer>
 
-    <script src="../js/flights.js"></script>
+    <script>
+        document.getElementById('flight-search-form').addEventListener('submit', async (event) => {
+    event.preventDefault(); // Prevent form from reloading the page
+
+    // Use hardcoded bounding box values for testing or replace with user inputs
+    const lamin = 40.0; // Southern latitude
+    const lomin = -74.0; // Western longitude
+    const lamax = 41.0; // Northern latitude
+    const lomax = -73.0; // Eastern longitude
+
+    try {
+        const response = await axios.get('/api/flights/search', {
+            params: {
+                lamin,
+                lomin,
+                lamax,
+                lomax,
+            },
+        });
+
+        const flights = response.data.flights; // Access flight data from the response
+        const flightsContainer = document.getElementById('flights-container');
+        flightsContainer.innerHTML = '';
+
+        // Dynamically populate flights
+        if (flights.length > 0) {
+            flights.forEach((flight) => {
+                const flightElement = document.createElement('div');
+                flightElement.className = 'flight-item';
+                flightElement.innerHTML = `
+                    <p><strong>Flight Number:</strong> ${flight.flightNumber}</p>
+                    <p><strong>Origin:</strong> ${flight.origin}</p>
+                    <p><strong>Altitude:</strong> ${flight.altitude} ft</p>
+                    <p><strong>Price:</strong> $${flight.price}</p>
+                `;
+                flightsContainer.appendChild(flightElement);
+            });
+        } else {
+            flightsContainer.innerHTML = '<p>No flights found for the specified criteria.</p>';
+        }
+    } catch (error) {
+        console.error('Error fetching flights:', error);
+        document.getElementById('flights-container').innerHTML = '<p>Failed to fetch flight data. Please try again later.</p>';
+    }
+});
+    </script>
 </body>
 </html>

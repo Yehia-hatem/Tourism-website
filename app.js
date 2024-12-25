@@ -4,6 +4,7 @@ const { engine } = require('express-handlebars');
 const sequelize = require('./config/db');
 const mainRoutes = require('./routes/mainRoutes')
 const authRoutes = require('./controllers/authController'); // Import the combined router and controller
+const flightsRoutes = require('./routes/flightsRoutes');
 
 const app = express();
 
@@ -18,6 +19,9 @@ app.use(express.static('public'));
 app.engine('hbs', engine({ extname: '.hbs', defaultLayout: false }));
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
+
+// FLight route
+app.use('/api/flights', flightsRoutes);
 
 // Define the root route
 app.use('/',mainRoutes)
