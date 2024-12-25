@@ -26,6 +26,11 @@ router.get('/contact', (req, res) => {
     res.render('contact', { title: 'Contacts' });
 });
 
+//Booking Page
+router.get('/booking', (req, res) => {
+    res.render('booking', { title: 'Booking' });
+});
+
 
 
 module.exports = router;
